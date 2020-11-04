@@ -1,0 +1,19 @@
+{
+    "button": {
+        "colours": {
+            "normal_bg": "#FF0000",
+            "hovered_bg": "#FF0033",
+            "disabled_bg": "#ffd000",
+            "selected_bg": "#9d00ff",
+            "active_bg": "#9d00ff"
+        },
+        "font": {
+            "name": "fira_code",
+            "size": "15",
+            "bold": "1"
+        },
+        "misc": {
+            "shape": "ellipse"
+        }
+    }
+}

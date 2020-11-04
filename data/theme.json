@@ -1,0 +1,9 @@
+{
+    "button": {
+        "font": {
+            "name": "fira_code",
+            "size": "15",
+            "bold": "1"
+        }
+    }
+}

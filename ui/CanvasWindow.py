@@ -1,0 +1,2 @@
+class CanvasWindow:
+    pass
