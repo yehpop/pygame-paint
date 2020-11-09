@@ -1,9 +1,9 @@
 import pygame
 import pygame_gui as gui
 
-from ui.CanvasWindow import CanvasWindow
-from ui.MenuBar import MenuBar
-from ui.ToolBar import ToolBar
+from lib import CanvasWindow
+from lib import MenuBar
+from lib import ToolBar
 
 from MenuBarEvents import MenuBarEvents
 

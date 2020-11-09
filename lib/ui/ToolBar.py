@@ -3,8 +3,8 @@ import pygame_gui as gui
 
 from pygame_gui.elements import UIHorizontalSlider, UIButton, UILabel
 
-from tools.Brush import ToolBrush
-from tools.Bucket import ToolBucket
+from lib.tools import ToolBrush
+from lib.tools import ToolBucket
 
 
 class ToolBar(gui.elements.UIWindow):
