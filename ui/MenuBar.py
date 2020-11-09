@@ -60,11 +60,26 @@ class MenuBar(UIElement):
                                             starting_height=1,
                                             parent_element=self,
                                             object_id='#menu_bar_container')
+        xPosTopMenu = 0
+        for menuKey, menuItem in self.menuData.items():
+            # creates top menu buttons
+            defaultFont = self.ui_manager.get_theme().get_font_dictionary(
+            ).get_default_font()
+            itemTextSize = defaultFont.size(menuItem['display_name'])
+            UIButton(pygame.Rect(
+                (xPosTopMenu, 0),
+                (itemTextSize[0] + 10, self.menuBarContainer.rect.height)),
+                     menuItem['display_name'],
+                     self.ui_manager,
+                     self.menuBarContainer,
+                     object_id=menuKey,
+                     parent_element=self)
+            xPosTopMenu += itemTextSize[0] + 10
 
     def unfocus(self):
         pass
 
-    def __open_top_menu(self, event):
+    def _open_top_menu(self, event):
         pass
 
     def rebuild_from_changed_theme_data(self):

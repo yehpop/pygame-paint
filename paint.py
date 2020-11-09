@@ -3,14 +3,13 @@ from PygamePaint import PygamePaint
 if __name__ == "__main__":
     app = PygamePaint()
     app.start()
-##############################
 """
 TODO:
 - A lot actually lol
 - I have to add a lot of stuff to the menu bar
 (
     !especially!
-    Top Menu Buttons('File', 'Edit', 'View', etc.),
+    |DONE|Top Menu Buttons('File', 'Edit', 'View', etc.),
     Buttons Under Top Menu Buttons('File/Open...', etc.),
     Events and handler for events
 ) --this is prob the hardest lol

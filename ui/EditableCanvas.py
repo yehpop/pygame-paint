@@ -14,10 +14,10 @@ class EditableCanvas(UIElement):
 
     def save_file_path():
         pass
-    
+
     def active_tool():
         pass
-    
+
     def process_events():
         pass
 
