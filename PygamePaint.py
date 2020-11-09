@@ -14,14 +14,14 @@ class PygamePaint:
         # the main window stuff
         pygame.display.set_caption("Paint")
         dimensionA = (800, 600)
-        titleIcon = pygame.image.load("data\\paint_icon.png")
+        titleIcon = pygame.image.load("res\\paint_icon.png")
         pygame.display.set_icon(titleIcon)
         self.mainWindow = pygame.display.set_mode(dimensionA)
         self.background = pygame.Surface(dimensionA)
         self.background.fill(pygame.Color("#3d3a3a"))
 
         self.manager = gui.UIManager((dimensionA),
-                                     theme_path="data\\theme.json")
+                                     theme_path="res\\theme.json")
         menuData = {
             '#file_menu': {
                 'display_name': 'File',
@@ -72,9 +72,11 @@ class PygamePaint:
             }
         }  # menu bar'daki diğer menüler için
 
-        self.menuBar = MenuBar(pygame.Rect((0, 0), (800, 25)), menuData,
-                               self.manager)
-        self.toolBar = ToolBar(pygame.Rect((0, 75), (200, 400)), self.manager)
+        rectMB = pygame.Rect((0, 0), (800, 25))
+        self.menuBar = MenuBar(rectMB, menuData, self.manager)
+
+        rectTB = pygame.Rect((0, 75), (200, 450))
+        self.toolBar = ToolBar(rectTB, self.manager)
 
         self.clock = pygame.time.Clock()
         self.isRunning = True
@@ -86,7 +88,7 @@ class PygamePaint:
     def start(self):  # loop
         while self.isRunning:
             timeDelta = self.clock.tick(60) / 1000.0
-            
+
             for event in pygame.event.get():
                 self.on_event(event)  # to make it look cleaner ig
 
@@ -95,7 +97,7 @@ class PygamePaint:
             self.manager.update(timeDelta)
 
             self.mainWindow.blit(self.background, (0, 0))
-            
+
             self.manager.draw_ui(self.mainWindow)
 
             pygame.display.update()

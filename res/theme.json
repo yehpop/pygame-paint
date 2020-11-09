@@ -14,10 +14,17 @@
             "bold": "1"
         }
     },
+    "#brush_button": {
+        "images": {
+            "normal_image": {
+                "path": "res\\brush_button.png"
+            }
+        }
+    },
     "#bucket_button": {
         "images": {
             "normal_image": {
-                "path": "data\\bucket_button.png"
+                "path": "res\\bucket_button.png"
             }
         }
     }

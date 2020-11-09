@@ -1,3 +1,7 @@
+import pygame
+import pygame_gui
+
+
 class MenuBarEvents:
     def __init__(self, windowSurface, manager):
         pass

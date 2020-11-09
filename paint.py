@@ -16,7 +16,7 @@ TODO:
 - Add code to Tools
     --Brush = incomplete
     --Bucket = incomplete
-- Add methods to ToolBar that refresh options for tools, process events, get active tool, set active tool, etc.
+- Add methods to ToolBar that (|DONE|refresh options for tools), process events, get active tool, set active tool, etc.
 - Also I want to add a palette thing on the tool bar with updates constintly and has a slider under to 
 -     change the color. A few buttons to quickly change to main colors would also be pretty nice.
 - Add a bunch a shite to theme.json and make theme_light.json and theme_dark.json
