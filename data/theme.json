@@ -1,9 +1,24 @@
 {
+    "menu_bar": {
+        "misc": {
+            "shape": "rectangle",
+            "shadow_width": "0",
+            "border_width": "1",
+            "shape_corner_radius": "2"
+        }
+    },
     "button": {
         "font": {
             "name": "fira_code",
             "size": "15",
             "bold": "1"
+        }
+    },
+    "#bucket_button": {
+        "images": {
+            "normal_image": {
+                "path": "data\\bucket_button.png"
+            }
         }
     }
 }
