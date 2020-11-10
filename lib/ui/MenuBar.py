@@ -68,19 +68,30 @@ class MenuBar(UIElement):
             itemTextSize = defaultFont.size(menuItem['display_name'])
             UIButton(pygame.Rect(
                 (xPosTopMenu, 0),
-                (itemTextSize[0] + 10, self.menuBarContainer.rect.height)),
+                (itemTextSize[0] + 16, self.menuBarContainer.rect.height)),
                      menuItem['display_name'],
                      self.ui_manager,
                      self.menuBarContainer,
                      object_id=menuKey,
                      parent_element=self)
-            xPosTopMenu += itemTextSize[0] + 10
+            xPosTopMenu += itemTextSize[0] + 16
 
     def unfocus(self):
         pass
 
     def _open_top_menu(self, event):
         pass
+
+    def update(self, timeDelta: float):
+        """
+        A method called every update cycle of our application. Designed to be overridden by derived
+        classes but also has a little functionality to make sure the menu's layer 'thickness' is
+        accurate and to handle window resizing.
+        :param time_delta: time passed in seconds between one call to this method and the next.
+        """
+        super().update(timeDelta)
+        if self.menuBarContainer.layer_thickness != self.layer_thickness:
+            self.layer_thickness = self.menuBarContainer.layer_thickness
 
     def rebuild_from_changed_theme_data(self):
         """
@@ -133,3 +144,41 @@ class MenuBar(UIElement):
                                                     self.ui_manager)
 
         self.on_fresh_drawable_shape_ready()
+
+    # holy shit annotations are cool
+    def process_event(self, event: pygame.event.Event) -> bool:
+        """
+        Blocks mouse click down events from passing through the menu.
+        
+        :param event: The event to process.
+        :return: Should return True if this element consumes this event.
+        """
+        eventConsumed = False
+        if (self is not None and event.type == pygame.MOUSEBUTTONDOWN
+                and event.button in [pygame.BUTTON_LEFT, pygame.BUTTON_RIGHT]):
+            scaledMousePos = (int(event.pos[0] *
+                                  self.ui_manager.mouse_pos_scale_factor[0]),
+                              int(event.pos[1] *
+                                  self.ui_manager.mouse_pos_scale_factor[1]))
+            if self.hover_point(scaledMousePos[0], scaledMousePos[1]):
+                eventConsumed = True
+
+        if (event.type == pygame.USEREVENT
+                and event.user_type == gui.UI_BUTTON_ON_HOVERED
+                and event.ui_element in self.menuBarContainer.elements
+                and self.openMenu != None):
+            if self._selectedMenuButton is not None:
+                self._selectedMenuButton.unselect()
+            self._selectedMenuButton = event.ui_element
+            self._selectedMenuButton.select()
+            self._open_top_menu(event)
+        if (event.type == pygame.USEREVENT
+                and event.user_type == gui.UI_BUTTON_START_PRESS
+                and event.ui_element in self.menuBarContainer.elements):
+            if self._selectedMenuButton is not None:
+                self._selectedMenuButton.unselect()
+            self._selectedMenuButton = event.ui_element
+            self._selectedMenuButton.select()
+            self._open_top_menu(event)
+
+        return eventConsumed

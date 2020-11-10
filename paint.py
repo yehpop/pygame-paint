@@ -4,8 +4,9 @@ if __name__ == "__main__":
     app = PygamePaint()
     app.start()
 """
-TODO:
+                            ~~TODO~~
 - A lot actually lol
+
 - I have to add a lot of stuff to the menu bar
 (
     !especially!
@@ -13,13 +14,26 @@ TODO:
     Buttons Under Top Menu Buttons('File/Open...', etc.),
     Events and handler for events
 ) --this is prob the hardest lol
+
 - Add code to Tools
-    --Brush = incomplete
-    --Bucket = incomplete
-- Add methods to ToolBar that (|DONE|refresh options for tools), process events, get active tool, set active tool, etc.
-- Also I want to add a palette thing on the tool bar with updates constintly and has a slider under to 
--     change the color. A few buttons to quickly change to main colors would also be pretty nice.
+    --Brush = incomplete (~28%)
+    --Bucket = incomplete (~1%)
+
+- Add methods to ToolBar that 
+-    (|DONE|refresh options for tools), 
+-    (process events[~82%]), 
+-    (|DONE|get active tool, set active tool),
+-    a method called every update cycle, etc.
+
+-|DONE| Also I want to add a palette thing on the tool bar
+-   (|Not Gonna Happen| and has a slider under to change the color).
+-   (|Prob won't happen either|A  buttons to quickly change to main colors would also be pretty nice.)
+
 - Add a bunch a shite to theme.json and make theme_light.json and theme_dark.json
+
 - Add code to class EditableCanvas and its methods (same for MenuBarEvents)
-- Continue digging into pygame_gui's source code
+
+- |DONE|Make CanvasWindow Scrollable (did it early cause its prob the easiest lol)
+
+- Continue digging into pygame_gui's source code (I'M DYINGGG)
 """

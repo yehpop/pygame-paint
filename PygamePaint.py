@@ -54,6 +54,12 @@ class PygamePaint:
             '#view_menu': {
                 'display_name': 'View',
                 'items': {
+                    '#theme': {
+                        'display_name': 'Theme'
+                    },
+                    '#workspace': {
+                        'display_name': 'Window...'
+                    },
                     '#info': {
                         'display_name': 'Image info'
                     }
@@ -62,9 +68,6 @@ class PygamePaint:
             '#help_menu': {
                 'display_name': 'Help',
                 'items': {
-                    '#theme': {
-                        'display_name': 'Theme'
-                    },
                     '#about': {
                         'display_name': 'About'
                     }
@@ -75,7 +78,7 @@ class PygamePaint:
         rectMB = pygame.Rect((0, 0), (800, 25))
         self.menuBar = MenuBar(rectMB, menuData, self.manager)
 
-        rectTB = pygame.Rect((0, 75), (200, 450))
+        rectTB = pygame.Rect((0, 75), (200, 475))
         self.toolBar = ToolBar(rectTB, self.manager)
 
         self.clock = pygame.time.Clock()

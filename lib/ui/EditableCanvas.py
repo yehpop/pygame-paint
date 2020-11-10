@@ -9,8 +9,8 @@ from pygame_gui.core import UIElement
 
 class EditableCanvas(UIElement):
     # again lots of paramters
-    def __init__():
-        pass
+    def __init__(self):
+        self.a = 1
 
     def save_file_path():
         pass

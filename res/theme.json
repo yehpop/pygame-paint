@@ -1,4 +1,12 @@
 {
+    "default": {
+        "font": {
+            "name": "caviar_dreams",
+            "size": "15",
+            "regular_path": "res\\fonts\\CaviarDreams.ttf",
+            "bold_path": "res\\fonts\\CaviarDreams_Bold.ttf"
+        }
+    },
     "menu_bar": {
         "misc": {
             "shape": "rectangle",
@@ -7,11 +15,19 @@
             "shape_corner_radius": "2"
         }
     },
+    "menu_bar.button": {
+        "misc": {
+            "shadow_width": "0",
+            "border_width": "0"
+        }
+    },
     "button": {
         "font": {
-            "name": "fira_code",
+            "name": "caviar_dreams",
             "size": "15",
-            "bold": "1"
+            "bold": "1",
+            "regular_path": "res\\fonts\\CaviarDreams.ttf",
+            "bold_path": "res\\fonts\\CaviarDreams_Bold.ttf"
         }
     },
     "#brush_button": {
@@ -27,5 +43,21 @@
                 "path": "res\\bucket_button.png"
             }
         }
+    },
+    "#fira_button": {
+        "font": {
+            "name": "fira_code",
+            "size": "15",
+            "bold": "1"
+        }
+    },
+    "#tool_bar.#opacity_slider.button": {
+        "prototype": "#fira_button"
+    },
+    "#tool_bar.#brush_size_slider.button": {
+        "prototype": "#fira_button"
+    },
+    "#close_button": {
+        "prototype": "#fira_button"
     }
 }
