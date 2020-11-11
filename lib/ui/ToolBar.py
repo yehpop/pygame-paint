@@ -197,7 +197,7 @@ class ToolBar(gui.elements.UIWindow):
             pass  # brush size slider
 
         # ↓↓↓ extra ↓↓↓
-        # Unsure about this but, I'll keep it for now
+        # Unsure about this but, I'll keep it for now... it makes the close button functional
         if (event.type == pygame.USEREVENT
                 and event.user_type == gui.UI_BUTTON_PRESSED
                 and event.ui_element == self.close_window_button):

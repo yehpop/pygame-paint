@@ -4,15 +4,15 @@ if __name__ == "__main__":
     app = PygamePaint()
     app.start()
 """
-                        ~~TODO~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~TODO~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 - A lot actually lol
 
 - I have to add a lot of stuff to the menu bar
 (
     !especially!
     |DONE|Top Menu Buttons('File', 'Edit', 'View', etc.),
-    Buttons Under Top Menu Buttons('File/Open...', etc.),
-    Events and handler for events
+    |~84%|Buttons Under Top Menu Buttons('File/Open...', etc.),
+    |~93%|Events and handler for events
 ) --this is prob the hardest lol
 
 - Add code to Tools
@@ -31,11 +31,14 @@ if __name__ == "__main__":
 
 - Add a bunch a shite to theme.json and make theme_light.json and theme_dark.json
 
-- Add code to class EditableCanvas and its methods[~100%] (same for MenuBarEvents)
+- Add code to class EditableCanvas and its methods[~100%] 
+- Same for MenuBarEvents[~49]
 
 - |DONE|Make CanvasWindow Scrollable (did it early cause its prob the easiest lol)
 
 - on_event() method in class PygamePaint
 
 - Continue digging into pygame_gui's source code (I'M DYINGGG)
+
+#######################################################################################################
 """

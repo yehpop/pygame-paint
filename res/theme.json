@@ -3,6 +3,7 @@
         "font": {
             "name": "caviar_dreams",
             "size": "15",
+            "bold": "1",
             "regular_path": "res\\fonts\\CaviarDreams.ttf",
             "bold_path": "res\\fonts\\CaviarDreams_Bold.ttf"
         }
@@ -20,6 +21,49 @@
             "shadow_width": "0",
             "border_width": "0"
         }
+    },
+    "menu_bar.selection_list": {
+        "misc": {
+            "shadow_width": "0"
+        },
+        "scroll_bar": "False"
+    },
+    "#smaller_font": {
+        "font": {
+            "name": "caviar_dreams",
+            "size": "14",
+            "bold": "1"
+        }
+    },
+    "menu_bar.#file_menu_items.#new": {
+        "prototype": "#smaller_font"
+    },
+    "menu_bar.#file_menu_items.#open": {
+        "prototype": "#smaller_font"
+    },
+    "menu_bar.#file_menu_items.#save": {
+        "prototype": "#smaller_font"
+    },
+    "menu_bar.#file_menu_items.#save_as": {
+        "prototype": "#smaller_font"
+    },
+    "menu_bar.#edit_menu_items.#undo": {
+        "prototype": "#smaller_font"
+    },
+    "menu_bar.#edit_menu_items.#redo": {
+        "prototype": "#smaller_font"
+    },
+    "menu_bar.#view_menu_items.#theme": {
+        "prototype": "#smaller_font"
+    },
+    "menu_bar.#view_menu_items.#workspace": {
+        "prototype": "#smaller_font"
+    },
+    "menu_bar.#view_menu_items.#info": {
+        "prototype": "#smaller_font"
+    },
+    "menu_bar.#help_menu_items.#about": {
+        "prototype": "#smaller_font"
     },
     "button": {
         "font": {

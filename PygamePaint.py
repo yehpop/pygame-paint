@@ -84,7 +84,10 @@ class PygamePaint:
     def on_event(self, event):
         if event.type == pygame.QUIT:
             self.isRunning = False
-
+            
+        if event.type == pygame.USEREVENT and event.user_type == 'canvas_window_created':
+            pass
+    
     def start(self):  # loop
         while self.isRunning:
             timeDelta = self.clock.tick(60) / 1000.0

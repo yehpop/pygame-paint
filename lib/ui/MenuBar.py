@@ -76,11 +76,42 @@ class MenuBar(UIElement):
                      parent_element=self)
             xPosTopMenu += itemTextSize[0] + 16
 
+    # obvious and the code is pretty straightfoward
     def unfocus(self):
-        pass
+        if self.openMenu is not None:
+            self.openMenu.kill()
+            self.openMenu = None
+        if self._selectedMenuButton is not None:
+            self._selectedMenuButton.unselect()
+            self._selectedMenuButton = None
+
+    # because we have to kill more stuff
+    def kill(self):
+        self.menu_bar_container.kill()
+        super().kill()
 
     def _open_top_menu(self, event):
-        pass
+        # kill any menu that's already open
+        if self.openMenu is not None:
+            self.openMenu.kill()
+        # open selected top menu
+        menuKey = event.ui_object_id.split('.')[-1]
+        menuSize = ((len(self.menuData[menuKey]['items']) * 20) + (2 *
+                                                                   (0 + 1)))
+        itemData = [
+            (itemData['display_name'], itemKey)
+            for itemKey, itemData in self.menuData[menuKey]['items'].items()
+        ]
+        menuRect = pygame.Rect((0, 0), (200, menuSize))
+        menuRect.topleft = event.ui_element.rect.bottomleft
+        topUILayer = self.ui_manager.get_sprite_group().get_top_layer()
+        self.openMenu = UISelectionList(menuRect,
+                                        itemData,
+                                        self.ui_manager,
+                                        starting_height=topUILayer,
+                                        parent_element=self,
+                                        object_id=menuKey + '_items')
+        self.ui_manager.set_focus_set(self)
 
     def update(self, timeDelta: float):
         """
