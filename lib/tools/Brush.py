@@ -74,7 +74,7 @@ class ToolBrush:
         yPos = mousePos[1]
 
         if (event.type == pygame.MOUSEBUTTONDOWN and event.button == 1):
-            if canvas.hoverPoint(xPos, yPos):
+            if canvas.hover_pointt(xPos, yPos):
                 if not self.painting:
                     self.startPainting = True
                     eventConsumed = True
@@ -127,7 +127,7 @@ class ToolBrush:
                 if self.centerPos in point:
                     point.remove(self.centerPos)
                 for p in point:
-                    if canvas.hoverPoint(p[0], p[1]):
+                    if canvas.hover_pointt(p[0], p[1]):
                         newRect = pygame.Rect((0,0), self.image.get_size())
                         newRect.center = p
                         self.newRectsToBlit.append(newRect)

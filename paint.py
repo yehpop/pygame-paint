@@ -35,5 +35,7 @@ if __name__ == "__main__":
 
 - |DONE|Make CanvasWindow Scrollable (did it early cause its prob the easiest lol)
 
+- on_event() method in class PygamePaint
+
 - Continue digging into pygame_gui's source code (I'M DYINGGG)
 """
