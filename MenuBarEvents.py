@@ -1,4 +1,3 @@
-from lib.ui.DialogWindow import NewCanvasDialog
 from typing import Union, List
 from pathlib import Path
 
