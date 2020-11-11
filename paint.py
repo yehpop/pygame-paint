@@ -4,7 +4,7 @@ if __name__ == "__main__":
     app = PygamePaint()
     app.start()
 """
-                            ~~TODO~~
+                        ~~TODO~~
 - A lot actually lol
 
 - I have to add a lot of stuff to the menu bar
@@ -16,7 +16,7 @@ if __name__ == "__main__":
 ) --this is prob the hardest lol
 
 - Add code to Tools
-    --Brush = incomplete (~28%)
+    --Brush = probably complete
     --Bucket = incomplete (~1%)
 
 - Add methods to ToolBar that 
@@ -31,7 +31,7 @@ if __name__ == "__main__":
 
 - Add a bunch a shite to theme.json and make theme_light.json and theme_dark.json
 
-- Add code to class EditableCanvas and its methods (same for MenuBarEvents)
+- Add code to class EditableCanvas and its methods[~100%] (same for MenuBarEvents)
 
 - |DONE|Make CanvasWindow Scrollable (did it early cause its prob the easiest lol)
 

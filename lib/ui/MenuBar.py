@@ -84,9 +84,8 @@ class MenuBar(UIElement):
 
     def update(self, timeDelta: float):
         """
-        A method called every update cycle of our application. Designed to be overridden by derived
-        classes but also has a little functionality to make sure the menu's layer 'thickness' is
-        accurate and to handle window resizing.
+        A method called every update cycle of our application. Makes sure the menu's layer 'thickness' is
+        accurate and handles window resizing.
         :param time_delta: time passed in seconds between one call to this method and the next.
         """
         super().update(timeDelta)

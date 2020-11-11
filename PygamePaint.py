@@ -1,10 +1,7 @@
 import pygame
 import pygame_gui as gui
 
-from lib import CanvasWindow
-from lib import MenuBar
-from lib import ToolBar
-
+from lib import CanvasWindow, MenuBar, ToolBar
 from MenuBarEvents import MenuBarEvents
 
 
