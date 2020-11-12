@@ -21,6 +21,16 @@ class MenuBarEvents:
         self.activeCanvas = None  # type: Union[CanvasWindow, None]
 
     def process_events(self, event):
+        # ↓↓↓ Canvas Stuff ↓↓↓
+        if (event.type == pygame.USEREVENT
+                and event.user_type == UI_WINDOW_MOVED_TO_FRONT
+                and event.ui_element_id == '#canvas_window'):
+            self.activeCanvas = event.ui_element
+        if (event.type == pygame.USEREVENT
+                and event.user_type == UI_WINDOW_CLOSE
+                and event.ui_element_id == '#canvas_window'):
+            self.activeCanvas = None
+        # ↓↓↓ File Menu ↓↓↓
         if (event.type == pygame.USEREVENT
                 and event.user_type == UI_BUTTON_START_PRESS
                 and event.ui_object_id == 'menu_bar.#file_menu.#new'):
@@ -38,6 +48,58 @@ class MenuBarEvents:
                          self.lastUsedFilePath,
                          '#open_file_dialog',
                          allow_existing_files_only=True)
+        if (event.type == pygame.USEREVENT
+                and event.user_type == UI_BUTTON_START_PRESS
+                and event.ui_object_id == 'menu_bar.#file_menu.#save'
+                and self.activeCanvas is not None
+                and self.activeCanvas.canvasUI.savePath is not None):
+            try:
+                print(
+                    f"Saving to... {str(self.activeCanvas.canvasUI.savePath)}")
+                pygame.image.save(self.activeCanvas.canvasUI.get_image(),
+                                  self.activeCanvas.canvasUI.savePath)
+            except pygame.error:
+                msgRect = pygame.Rect((0, 0), (250, 160))
+                msgRect.center = self.windowSurface.get_rect().center
+                msgWindow = UIMessageWindow(msgRect,
+                                            html_message='Unable to save...',
+                                            manager=self.ui_manager,
+                                            window_title='Error')
+                msgWindow.set_blocking(True)  # blocks clicking anything else
+        if (event.type == pygame.USEREVENT
+                and event.user_type == UI_BUTTON_START_PRESS
+                and event.ui_object_id == 'menu_bar.#file_menu.#save_as'
+                and self.activeCanvas is not None):
+            fileDialogRect = pygame.Rect((0, 0), (400, 350))
+            fileDialogRect.center = self.windowSurface.get_rect().center
+            if self.activeCanvas.canvasUI.savePath is not None:
+                filePath = self.activeCanvas.canvasUI.savePath
+            else:
+                filePath = (Path(self.lastUsedFilePath) /
+                            self.activeCanvas.window_display_title)
+            saveDialog = UIFileDialog(fileDialogRect,
+                                      self.ui_manager,
+                                      'Save As...',
+                                      str(filePath),
+                                      object_id='#save_file_dialog')
+            saveDialog.set_blocking(True)
+        # ↓↓↓ Edit Menu ↓↓↓
+        if (event.type == pygame.USEREVENT
+                and event.user_type == UI_BUTTON_START_PRESS
+                and event.ui_object_id == 'menu_bar.#edit_menu.#undo'
+                and self.activeCanvas is not None):
+            self._try_undo()
+        if (event.type == pygame.USEREVENT
+                and event.user_type == UI_BUTTON_START_PRESS
+                and event.ui_object_id == 'menu_bar.#edit_menu.#redo'
+                and self.activeCanvas is not None):
+            self._try_redo()
+        # ↓↓↓ View Menu ↓↓↓
+        if ():
+            pass
+        # ↓↓↓ Help Menu ↓↓↓
+        if ():
+            pass
 
     def _try_undo(self):
         pass

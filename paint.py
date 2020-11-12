@@ -32,7 +32,7 @@ if __name__ == "__main__":
 - Add a bunch a shite to theme.json and make theme_light.json and theme_dark.json
 
 - Add code to class EditableCanvas and its methods[~100%] 
-- Same for MenuBarEvents[~49]
+- Same for MenuBarEvents[~67]
 
 - |DONE|Make CanvasWindow Scrollable (did it early cause its prob the easiest lol)
 
