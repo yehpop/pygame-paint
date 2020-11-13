@@ -67,6 +67,10 @@ class ToolBrush:
                            (int((_brushSize + _padding) / 2),
                             int((_brushSize + _padding) / 2)),
                            int(_brushSize / 2) - int(self._brushArea * 0.5))
+        pygame.transform.smoothscale(_surface,
+                                     (self.option_data['brush_size']+padding,
+                                      self.option_data['brush_size']+padding),
+                                     self.image)
 
     def process_canvas(self, event, canvas, mousePos):
         eventConsumed = False

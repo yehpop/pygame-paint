@@ -189,20 +189,36 @@ class ToolBar(gui.elements.UIWindow):
         if (event.type == pygame.USEREVENT
                 and event.user_type == gui.UI_HORIZONTAL_SLIDER_MOVED
                 and event.ui_object_id == '#tool_bar.#opacity_slider'):
-            pass  # opacity slider
+            self.opacity = int(event.value)
+            self.activeTool.set_option('opacity', self.opacity)
         if (event.type == pygame.USEREVENT
                 and event.user_type == gui.UI_HORIZONTAL_SLIDER_MOVED
                 and event.ui_object_id == '#tool_bar.#brush_size_slider'):
-            pass  # brush size slider
+            self.brushSize = int(event.value)
+            self.activeTool.set_option('brush_size', self.brushSize)
 
         # ↓↓↓ extra ↓↓↓
-        # Unsure about this but, I'll keep it for now... it makes the close button functional
-        if (event.type == pygame.USEREVENT
-                and event.user_type == gui.UI_BUTTON_PRESSED
-                and event.ui_element == self.close_window_button):
-            self.kill()
+        if self.activeTool is not None:
+            self.activeTool.process_event(event)
 
         return False
 
     def update(self, timeDelta: float):
         super().update(timeDelta)
+
+        if self.activeTool is not None and self.activeTool.activeCanvas is not None:
+            mousePos = self.ui_manager.get_mouse_position()
+            if self.activeTool.activeCanvas.hover_point(
+                    mousePos[0], mousePos[1]):
+                if self.activeTool.activeCanvas.get_image_clipping_rect(
+                ) is not None:
+                    self.activeTool.update(
+                        timeDelta,
+                        self.activeTool.activeCanvas._pre_clipped_image,
+                        self.activeTool.activeCanvas.rect.topleft,
+                        self.activeTool.activeCanvas)
+                else:
+                    self.activeTool.update(
+                        timeDelta, self.activeTool.activeCanvas.image,
+                        self.activeTool.activeCanvas.rect.topleft,
+                        self.activeTool.activeCanvas)

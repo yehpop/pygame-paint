@@ -11,7 +11,7 @@ if __name__ == "__main__":
 (
     !especially!
     |DONE|Top Menu Buttons('File', 'Edit', 'View', etc.),
-    |~84%|Buttons Under Top Menu Buttons('File/Open...', etc.),
+    |~92%|Buttons Under Top Menu Buttons('File/Open...', etc.),
     |~93%|Events and handler for events
 ) --this is prob the hardest lol
 
@@ -21,7 +21,7 @@ if __name__ == "__main__":
 
 - Add methods to ToolBar that 
 -    (|DONE|refresh options for tools), 
--    (process events[~82%]), 
+-    (process events[~94%]), 
 -    (|DONE|get active tool, set active tool),
 -    a method called every update cycle, etc.
 
@@ -29,10 +29,10 @@ if __name__ == "__main__":
 -   (|Not Gonna Happen| and has a slider under to change the color).
 -   (|Prob won't happen either|A  buttons to quickly change to main colors would also be pretty nice.)
 
-- Add a bunch a shite to theme.json and make theme_light.json and theme_dark.json
+- Add a bunch a shite to theme.json and |DONE!|<-make theme_light.json and theme_dark.json
 
 - Add code to class EditableCanvas and its methods[~100%] 
-- Same for MenuBarEvents[~67]
+- Same for MenuBarEvents[~72]
 
 - |DONE|Make CanvasWindow Scrollable (did it early cause its prob the easiest lol)
 

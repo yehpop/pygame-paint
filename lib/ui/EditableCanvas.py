@@ -18,7 +18,12 @@ class EditableCanvas(UIElement):
                  parent=None,
                  object_id=None,
                  anchors=None):
-        super().__init__(rect, manager, container, 1, 1, anchors=anchors)
+        super().__init__(rect,
+                         manager,
+                         container,
+                         starting_height=1,
+                         layer_thickness=1,
+                         anchors=anchors)
 
         self._create_valid_ids(container, parent, object_id, 'editable_canvas')
 
