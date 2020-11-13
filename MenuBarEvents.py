@@ -97,15 +97,6 @@ class MenuBarEvents:
             self._try_redo()
         # ↓↓↓ View Menu ↓↓↓
         if (event.type == pygame.USEREVENT
-                and event.user_type == UI_BUTTON_START_PRESS and
-                event.ui_object_id == 'menu_bar.#view_menu_items.#workspace'):
-            pass
-        if (event.type == pygame.USEREVENT
-                and event.user_type == UI_BUTTON_START_PRESS
-                and event.ui_object_id == 'menu_bar.#view_menu_items.#info'):
-            pass
-        ## ↓↓↓ Themes ↓↓↓
-        if (event.type == pygame.USEREVENT
                 and event.user_type == UI_BUTTON_START_PRESS
                 and (event.ui_object_id == '#theme_items.#themes_default'
                      or event.ui_object_id == '#theme_items.#themes_light'
@@ -124,6 +115,10 @@ class MenuBarEvents:
                         'ui_object_id': event.ui_object_id,
                         'theme_path': themePath
                     }))
+        if (event.type == pygame.USEREVENT
+                and event.user_type == UI_BUTTON_START_PRESS
+                and event.ui_object_id == 'menu_bar.#view_menu_items.#info'):
+            pass
         # ↓↓↓ Help Menu ↓↓↓
         if (event.type == pygame.USEREVENT
                 and event.user_type == UI_BUTTON_START_PRESS

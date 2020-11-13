@@ -1,6 +1,7 @@
 import json
 import pygame
 import pygame_gui as gui
+from pathlib import Path
 
 from lib import CanvasWindow, MenuBar, ToolBar
 from MenuBarEvents import MenuBarEvents
@@ -60,9 +61,6 @@ class PygamePaint:
                     '#theme': {
                         'display_name': 'Theme'
                     },
-                    '#workspace': {
-                        'display_name': 'Window...'
-                    },
                     '#info': {
                         'display_name': 'Image info'
                     }
@@ -89,18 +87,6 @@ class PygamePaint:
         self.clock = pygame.time.Clock()
         self.isRunning = True
 
-    def on_event(self, event):
-        if event.type == pygame.QUIT:
-            self.isRunning = False
-
-        self.eventHandler.process_events(event)
-
-        if event.type == pygame.USEREVENT and event.user_type == 'theme_changed':
-            self.change_theme(event)
-
-        if event.type == pygame.USEREVENT and event.user_type == 'canvas_window_created':
-            pass
-
     def change_theme(self, event):
         if self.newTheme is not None:
             self.newTheme.clear()
@@ -112,7 +98,59 @@ class PygamePaint:
             self.background.fill(pygame.Color('#3d3a3a'))
         else:
             self.background.fill(pygame.Color("#301934"))
-        print("theme change attempted...")
+
+    def on_event(self, event):
+        if event.type == pygame.QUIT:
+            self.isRunning = False
+
+        self.eventHandler.process_events(event)
+
+        if event.type == pygame.USEREVENT and event.user_type == 'theme_changed':
+            self.change_theme(event)
+
+        if (event.type == pygame.USEREVENT
+                and event.user_type == gui.UI_FILE_DIALOG_PATH_PICKED
+                and event.ui_object_id == '#open_file_dialog'):
+            path = Path(event.text)
+            self.eventHandler.lastUsedFilePath = path.parent
+            try:
+                loadedImage = pygame.image.load(str(path)).convert_alpha()
+
+                canvasWindowRect = pygame.Rect(
+                    (200, 25), (min(loadedImage.get_width() + 52,
+                                    self.mainWindow.get_width() - 200),
+                                min(loadedImage.get_height() + 82,
+                                    self.mainWindow.get_height() - 25)))
+                window = CanvasWindow(canvasWindowRect, self.manager,
+                                      path.name, loadedImage)
+                window.canvasUI.set_active_tool(self.toolBar.get_active_tool())
+                window.canvasUI.set_save_file_path(path)
+            except pygame.error:
+                msgRect = pygame.Rect((0, 0), (250, 160))
+                msgRect.center = self.mainWindow.get_rect().center
+                msgWindow = gui.UIMessageWindow(
+                    msgRect,
+                    html_message='Unable to load image.',
+                    manager=self.ui_manager,
+                    window_title='Loading error')
+                msgWindow.set_blocking(True)
+
+        if event.type == pygame.USEREVENT and event.user_type == 'canvas_window_created':
+            newCanvas = pygame.Surface(event.size,
+                                       flags=pygame.SRCALPHA,
+                                       depth=32)
+            newCanvas.fill(event.color)
+            canvasRect = pygame.Rect((200, 25),
+                                     (min(newCanvas.get_width() + 52,
+                                          self.mainWindow.get_width() - 200),
+                                      min(newCanvas.get_height() + 82,
+                                          self.mainWindow.get_height() - 25)))
+            canvasWindow = CanvasWindow(canvasRect, self.manager,
+                                        'Untitled.png', newCanvas)
+            canvasWindow.canvasUI.set_active_tool(
+                self.toolBar.get_active_tool())
+
+        self.manager.process_events(event)
 
     def start(self):  # loop
         while self.isRunning:
@@ -120,8 +158,6 @@ class PygamePaint:
 
             for event in pygame.event.get():
                 self.on_event(event)  # to make it look cleaner ig
-
-                self.manager.process_events(event)
 
             self.manager.update(timeDelta)
 
