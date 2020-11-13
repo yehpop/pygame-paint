@@ -113,6 +113,25 @@ class MenuBar(UIElement):
                                         object_id=menuKey + '_items')
         self.ui_manager.set_focus_set(self)
 
+    # open selected sub menu
+    def _open_sub_menu(self, event, menuData):
+        menuKey = event.ui_object_id.split('.')[-1]
+        menuSize = ((len(menuData[menuKey]['items']) * 20) + (2 * (0 + 1)))
+        itemData = [
+            (itemData['display_name'], itemKey)
+            for itemKey, itemData in menuData[menuKey]['items'].items()
+        ]
+        menuRect = pygame.Rect((0, 0), (200, menuSize))
+        menuRect.topleft = event.ui_element.rect.topleft
+        topUILayer = self.ui_manager.get_sprite_group().get_top_layer()
+        self.openMenu = UISelectionList(menuRect,
+                                        itemData,
+                                        self.ui_manager,
+                                        starting_height=topUILayer,
+                                        parent_element=self.openMenu,
+                                        object_id=menuKey + '_items')
+        self.ui_manager.set_focus_set(self)
+
     def update(self, timeDelta: float):
         """
         A method called every update cycle of our application. Makes sure the menu's layer 'thickness' is
@@ -210,5 +229,25 @@ class MenuBar(UIElement):
             self._selectedMenuButton = event.ui_element
             self._selectedMenuButton.select()
             self._open_top_menu(event)
+        if (event.type == pygame.USEREVENT
+                and event.user_type == gui.UI_BUTTON_START_PRESS
+                and event.ui_object_id == 'menu_bar.#view_menu_items.#theme'):
+            themesData = {
+                '#theme': {
+                    'display_name': 'Themes',
+                    'items': {
+                        '#themes_default': {
+                            'display_name': 'Default Theme',
+                        },
+                        '#themes_light': {
+                            'display_name': 'Light Theme'
+                        },
+                        '#themes_dark': {
+                            'display_name': 'Dark Theme'
+                        }
+                    }
+                }
+            }
+            self._open_sub_menu(event, themesData)
 
         return eventConsumed

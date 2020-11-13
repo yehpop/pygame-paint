@@ -38,12 +38,11 @@ class ToolBar(gui.elements.UIWindow):
         self.activeTool = ToolBrush(self.paletteColor, self.opacity,
                                     self.brushSize)
 
-        self.paletteButton = UIButton(
-            pygame.Rect((50, 21), (64, 64)),
-            '',
-            self.ui_manager,
-            self,
-        )
+        self.paletteButton = UIButton(pygame.Rect((50, 21), (64, 64)),
+                                      '',
+                                      self.ui_manager,
+                                      self,
+                                      object_id='#palette_button')
 
         self.paletteButton.normal_image = pygame.Surface((58, 58),
                                                          flags=pygame.SRCALPHA,
