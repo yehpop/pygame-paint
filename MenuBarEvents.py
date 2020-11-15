@@ -2,7 +2,6 @@ from typing import Union, List
 from pathlib import Path
 
 import pygame
-from pygame_gui.elements.ui_selection_list import UISelectionList
 
 from pygame_gui.windows import UIFileDialog, UIMessageWindow
 from pygame_gui import UI_BUTTON_START_PRESS, UI_WINDOW_MOVED_TO_FRONT, UI_WINDOW_CLOSE
@@ -19,6 +18,8 @@ class MenuBarEvents:
         self.lastUsedFilePath = str(Path('.').absolute())
 
         self.activeCanvas = None  # type: Union[CanvasWindow, None]
+
+        self.clock = pygame.time.Clock()
 
     def process_events(self, event):
         # ↓↓↓ Canvas Stuff ↓↓↓
@@ -83,6 +84,29 @@ class MenuBarEvents:
                                       str(filePath),
                                       object_id='#save_file_dialog')
             saveDialog.set_blocking(True)
+        if (event.type == pygame.USEREVENT
+                and event.user_type == UI_FILE_DIALOG_PATH_PICKED
+                and event.ui_object_id == '#save_file_dialog'):
+            path = Path(event.text)
+            self.lastUsedFilePath = path.parent
+            try:
+                pygame.image.save(self.activeCanvas.canvasUI.get_image(),
+                                  str(path))
+                self.activeCanvas.set_display_title(path.name)
+                self.activeCanvas.canvasUI.savePath = path
+                print(
+                    f"Saving to... {str(self.activeCanvas.canvasUI.savePath)}")
+            except pygame.error:
+                msgRect = pygame.Rect((0, 0), (250, 160))
+                msgRect.center = self.windowSurface.get_rect().center
+                msgWindow = UIMessageWindow(
+                    msgRect,
+                    html_message='Unable to save image to selected path...'
+                    'This may be because of the image format'
+                    'Which must be .bmp, .png, .jpg or .tga',
+                    manager=self.ui_manager,
+                    window_title='Error')
+                msgWindow.set_blocking(True)
         # ↓↓↓ Edit Menu ↓↓↓
         if (event.type == pygame.USEREVENT
                 and event.user_type == UI_BUTTON_START_PRESS
@@ -94,6 +118,12 @@ class MenuBarEvents:
                 and event.ui_object_id == 'menu_bar.#edit_menu_items.#redo'
                 and self.activeCanvas is not None):
             self._try_redo()
+        if (event.type == pygame.KEYDOWN and event.key == pygame.K_z
+                and event.mod & pygame.KMOD_CTRL):
+            if event.mod & pygame.KMOD_SHIFT:
+                self._try_redo()
+            else:
+                self._try_undo()
         # ↓↓↓ View Menu ↓↓↓
         if (event.type == pygame.USEREVENT
                 and event.user_type == UI_BUTTON_START_PRESS
@@ -127,6 +157,7 @@ class MenuBarEvents:
     def _try_undo(self):
         if (self.activeCanvas is not None
                 and self.activeCanvas.canvasUI.undoStack):
+            timeDelta = self.clock.tick(60) / 1000.0
             undoRecord = self.activeCanvas.canvasUI.undoStack.pop()
 
             redoSurf = pygame.Surface(undoRecord.rect.size,
@@ -141,11 +172,12 @@ class MenuBarEvents:
     def _try_redo(self):
         if (self.activeCanvas is not None
                 and self.activeCanvas.canvasUI.redoStack):
+            timeDelta = self.clock.tick(60) / 1000.0
             redoRecord = self.activeCanvas.canvasUI.redoStack.pop()
             undoSurf = pygame.Surface(redoRecord.rect.size,
-                                       flags=pygame.SRCALPHA)
+                                      flags=pygame.SRCALPHA)
             undoSurf.blit(self.activeCanvas.canvasUI.get_image(), (0, 0),
-                           redoRecord.rect)
+                          redoRecord.rect)
             undoRecord = UndoRecord(undoSurf, redoRecord.rect.copy())
             self.activeCanvas.canvasUI.undoStack.append(undoRecord)
 
