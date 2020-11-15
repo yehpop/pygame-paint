@@ -8,8 +8,7 @@ from pygame_gui.windows import UIFileDialog, UIMessageWindow
 from pygame_gui import UI_BUTTON_START_PRESS, UI_WINDOW_MOVED_TO_FRONT, UI_WINDOW_CLOSE
 from pygame_gui import UI_FILE_DIALOG_PATH_PICKED
 
-from lib import CanvasWindow
-from lib import NewCanvasDialog
+from lib import CanvasWindow, NewCanvasDialog, UndoRecord
 
 
 class MenuBarEvents:
@@ -126,7 +125,29 @@ class MenuBarEvents:
             pass
 
     def _try_undo(self):
-        pass
+        if (self.activeCanvas is not None
+                and self.activeCanvas.canvasUI.undoStack):
+            undoRecord = self.activeCanvas.canvasUI.undoStack.pop()
+
+            redoSurf = pygame.Surface(undoRecord.rect.size,
+                                      flags=pygame.SRCALPHA)
+            redoSurf.blit(self.activeCanvas.canvasUI.get_image(), (0, 0),
+                          undoRecord.rect)
+            redoRecord = UndoRecord(redoSurf, undoRecord.rect.copy())
+            self.activeCanvas.canvasUI.redoStack.append(redoRecord)
+            self.activeCanvas.canvasUI.get_image().blit(
+                undoRecord.image, undoRecord.rect)
 
     def _try_redo(self):
-        pass
+        if (self.activeCanvas is not None
+                and self.activeCanvas.canvasUI.redoStack):
+            redoRecord = self.activeCanvas.canvasUI.redoStack.pop()
+            undoSurf = pygame.Surface(redoRecord.rect.size,
+                                       flags=pygame.SRCALPHA)
+            undoSurf.blit(self.activeCanvas.canvasUI.get_image(), (0, 0),
+                           redoRecord.rect)
+            undoRecord = UndoRecord(undoSurf, redoRecord.rect.copy())
+            self.activeCanvas.canvasUI.undoStack.append(undoRecord)
+
+            self.activeCanvas.canvasUI.get_image().blit(
+                redoRecord.image, redoRecord.rect)

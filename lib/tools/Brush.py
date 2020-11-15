@@ -1,5 +1,5 @@
 import pygame
-from lib.tools import UndoRecord
+from lib.tools.UndoRecord import UndoRecord
 
 
 class ToolBrush:
@@ -114,7 +114,7 @@ class ToolBrush:
         newPos = pygame.mouse.get_pos()
 
         if self.startPainting:
-            self.startPaint = False
+            self.startPainting = False
             self.centerPos = newPos
             self.preSurface = canvasSurface.copy()
 
@@ -144,7 +144,7 @@ class ToolBrush:
                                                        depth=32)
             newTempSurface.fill(pygame.Color(self.option_data['palette_color'].r,
                                                         self.option_data['palette_color'].g,
-                                                        self.option_data['palette_colosr'].b,
+                                                        self.option_data['palette_color'].b,
                                                         0))
             if self.tempSurface is not None:
                 newTempSurface.blit(self.tempSurface,
@@ -183,7 +183,7 @@ class ToolBrush:
     def _line(point1, point2):
         x0, x1 = point1[0], point2[0]
         y0, y1 = point1[1], point2[1]
-        if abs(x0 - x1) > abs(y0 - y1):
+        if abs(x1 - x0) > abs(y1 - y0):
             if x0 > x1:
                 _points = ToolBrush._line_low(x1, y1, x0, y0)
             else:

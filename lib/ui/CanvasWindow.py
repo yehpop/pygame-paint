@@ -24,7 +24,7 @@ class CanvasWindow(gui.elements.UIWindow):
                                                         })
         self.scrollableContainer.set_scrollable_area_dimensions(
             (image.get_width() + 25, image.get_height() + 25))
-        canvasUIRect = pygame.Rect((0, 0),
+        canvasUIRect = pygame.Rect((10, 10),
                                    (image.get_width(), image.get_height()))
         self.canvasUI = EditableCanvas(canvasUIRect, image, manager,
                                        self.scrollableContainer)

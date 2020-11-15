@@ -124,14 +124,14 @@ class PygamePaint:
                 window = CanvasWindow(canvasWindowRect, self.manager,
                                       path.name, loadedImage)
                 window.canvasUI.set_active_tool(self.toolBar.get_active_tool())
-                window.canvasUI.set_save_file_path(path)
+                window.canvasUI.save_file_path(path)
             except pygame.error:
                 msgRect = pygame.Rect((0, 0), (250, 160))
                 msgRect.center = self.mainWindow.get_rect().center
-                msgWindow = gui.UIMessageWindow(
+                msgWindow = gui.windows.UIMessageWindow(
                     msgRect,
                     html_message='Unable to load image.',
-                    manager=self.ui_manager,
+                    manager=self.manager,
                     window_title='Loading error')
                 msgWindow.set_blocking(True)
 

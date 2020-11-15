@@ -151,11 +151,6 @@ class ToolBar(gui.elements.UIWindow):
         
         :return bool: False. Thats it, this doesn't consume any event
         """
-        if (True):
-            pass
-        # vscode highlights a bunch of shit blue becase of the return annotation and
-        # I did the above to block it... it really annoyed me
-
         # ↓↓↓ tool buttons ↓↓↓
         if (event.type == pygame.USEREVENT
                 and event.user_type == gui.UI_BUTTON_PRESSED
@@ -206,7 +201,8 @@ class ToolBar(gui.elements.UIWindow):
     def update(self, timeDelta: float):
         super().update(timeDelta)
 
-        if self.activeTool is not None and self.activeTool.activeCanvas is not None:
+        if (self.activeTool is not None
+                and self.activeTool.activeCanvas is not None):
             mousePos = self.ui_manager.get_mouse_position()
             if self.activeTool.activeCanvas.hover_point(
                     mousePos[0], mousePos[1]):
