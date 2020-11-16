@@ -11,19 +11,19 @@ if __name__ == "__main__":
 (
     !especially!
     |DONE|Top Menu Buttons('File', 'Edit', 'View', etc.),
-    |~92%|Buttons Under Top Menu Buttons('File/Open...', etc.),
-    |~93%|Events and handler for events
+    |~95%|Buttons Under Top Menu Buttons('File/Open...', etc.),
+    |~98%|Events and handler for events
 ) --this is prob the hardest lol
 
 - Add code to Tools
     --Brush = probably complete
-    --Bucket = incomplete (~1%)
+    --Bucket = incomplete (~1%) # oh god how am I gonna make this
 
 - Add methods to ToolBar that 
 -    (|DONE|refresh options for tools), 
--    (process events[~94%]), 
+-    (process events[~100%]), 
 -    (|DONE|get active tool, set active tool),
--    a method called every update cycle, etc.
+-    (|DONE|a method called every update cycle), etc.
 
 -|DONE| Also I want to add a palette thing on the tool bar
 -   (|Not Gonna Happen| and has a slider under to change the color).
@@ -32,7 +32,7 @@ if __name__ == "__main__":
 - Add a bunch a shite to theme.json and |DONE!|<-make theme_light.json and theme_dark.json
 
 - Add code to class EditableCanvas and its methods[~100%] 
-- Same for MenuBarEvents[~72]
+- Same for MenuBarEvents[~86%]
 
 - |DONE|Make CanvasWindow Scrollable (did it early cause its prob the easiest lol)
 

@@ -19,8 +19,6 @@ class MenuBarEvents:
 
         self.activeCanvas = None  # type: Union[CanvasWindow, None]
 
-        self.clock = pygame.time.Clock()
-
     def process_events(self, event):
         # ↓↓↓ Canvas Stuff ↓↓↓
         if (event.type == pygame.USEREVENT
@@ -157,7 +155,6 @@ class MenuBarEvents:
     def _try_undo(self):
         if (self.activeCanvas is not None
                 and self.activeCanvas.canvasUI.undoStack):
-            timeDelta = self.clock.tick(60) / 1000.0
             undoRecord = self.activeCanvas.canvasUI.undoStack.pop()
 
             redoSurf = pygame.Surface(undoRecord.rect.size,
@@ -172,7 +169,6 @@ class MenuBarEvents:
     def _try_redo(self):
         if (self.activeCanvas is not None
                 and self.activeCanvas.canvasUI.redoStack):
-            timeDelta = self.clock.tick(60) / 1000.0
             redoRecord = self.activeCanvas.canvasUI.redoStack.pop()
             undoSurf = pygame.Surface(redoRecord.rect.size,
                                       flags=pygame.SRCALPHA)
