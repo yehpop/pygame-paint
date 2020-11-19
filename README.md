@@ -2,7 +2,7 @@
 A Paint Program made using [pygame](https://github.com/pygame/pygame/tree/main) and [pygame_gui](https://github.com/MyreMylar/pygame_gui)  
 
 # usage
-Well if it isn't obvious enough just run paint.py...\
+Well if it isn't obvious enough just run paint.py...
 
 # features
 Basic paint stuff really like opening files, creating new canvases, saving to a location on your pc etc.\
