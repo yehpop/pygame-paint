@@ -8,6 +8,13 @@
             "bold_path": "res\\fonts\\CaviarDreams_Bold.ttf"
         }
     },
+    "fira_code_bold_14": {
+        "font": {
+            "name": "fira_code",
+            "size": "14",
+            "bold": "1"
+        }
+    },
     "#tool_bar.#palette_button": {
         "colours": {
             "normal_bg": "#FFFFFF",

@@ -99,9 +99,9 @@ class MenuBarEvents:
                 msgRect.center = self.windowSurface.get_rect().center
                 msgWindow = UIMessageWindow(
                     msgRect,
-                    html_message='Unable to save image to selected path...'
-                    'This may be because of the image format'
-                    'Which must be .bmp, .png, .jpg or .tga',
+                    html_message='Unable to save image to selected path...<br>'
+                    'This may be because of the image format<br>'
+                    'Which must be <i>.bmp, .png, .jpg or .tga</i><br>',
                     manager=self.ui_manager,
                     window_title='Error')
                 msgWindow.set_blocking(True)
@@ -144,13 +144,39 @@ class MenuBarEvents:
                     }))
         if (event.type == pygame.USEREVENT
                 and event.user_type == UI_BUTTON_START_PRESS
-                and event.ui_object_id == 'menu_bar.#view_menu_items.#info'):
-            pass
+                and event.ui_object_id == 'menu_bar.#view_menu_items.#info'
+                and self.activeCanvas is not None):
+            msgRect = pygame.Rect((0, 0), (256 + 64, 128 + 64 + 16))
+            msgRect.center = self.windowSurface.get_rect().center
+
+            fileName = self.activeCanvas.window_display_title
+            canvasSize = (str(self.activeCanvas.canvasUI.rect.width) + 'x' +
+                          str(self.activeCanvas.canvasUI.rect.height) +
+                          ' pixels.')
+            msgWindow = UIMessageWindow(
+                msgRect,
+                html_message='<br><b>           Image Info</b><br>'
+                '----------------------------------<br><br>'
+                '<b>File Name: </b>' + fileName + '<br>'
+                '<b>Size in Pixels: </b>' + canvasSize + '<br>',
+                manager=self.ui_manager,
+                window_title='Info')
+            msgWindow.set_blocking(True)
         # ↓↓↓ Help Menu ↓↓↓
         if (event.type == pygame.USEREVENT
                 and event.user_type == UI_BUTTON_START_PRESS
-                and event.ui_object_id == 'menu_bar.#help_menu_itemse.#about'):
-            pass
+                and event.ui_object_id == 'menu_bar.#help_menu_items.#about'):
+            msgRect = pygame.Rect((0, 0), (256, 194))
+            msgRect.center = self.windowSurface.get_rect().center
+            msgWindow = UIMessageWindow(
+                msgRect,
+                html_message='<br><b>     Pygame Paint</b><br>'
+                '-----------------------<br><br>'
+                '<b>Version: </b>1.0<br>'
+                '<b>Created by: </b>Yüşa Erenci<br>',
+                manager=self.ui_manager,
+                window_title='About')
+            msgWindow.set_blocking(True)
 
     def _try_undo(self):
         if (self.activeCanvas is not None
