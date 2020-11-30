@@ -51,7 +51,6 @@ class ToolBar(gui.elements.UIWindow):
         self.paletteButton.hovered_image = self.paletteButton.normal_image
         self.paletteButton.selected_image = self.paletteButton.normal_image
         self.paletteButton.rebuild()
-        # is it normal that i so much wanna make the 5 lines above a func
 
         self.refresh_tool_options()
 

@@ -11,6 +11,13 @@ from lib import CanvasWindow, NewCanvasDialog, UndoRecord
 
 
 class MenuBarEvents:
+    """
+    This Class is to create an object that handles events for the menu bar.
+    So an object of this is a menu bar event handler
+    
+    :param windowSurface: the display of the app
+    :param ui_manager: The manager for the UI
+    """
     def __init__(self, windowSurface, ui_manager):
         self.windowSurface = windowSurface
         self.ui_manager = ui_manager

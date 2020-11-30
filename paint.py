@@ -7,6 +7,10 @@ if __name__ == "__main__":
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~TODO~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 - A lot actually lol
 
+- Improve the Undo/Redo so you don't have to refocus the canvas everytime [~0%] 
+
+- Completely remove the bucket and add like a straight line tool, etc. instead or start coding the bucket
+
 - I have to add a lot of stuff to the menu bar
 (
     !especially!

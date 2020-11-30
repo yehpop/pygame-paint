@@ -3,6 +3,16 @@ from lib.tools.UndoRecord import UndoRecord
 
 
 class ToolBrush:
+    """
+    Object of this class is a brush. And this class has very complicated coding that even I don't get lol.
+    But, the way the painting thing works is it uses an algorithm to draw lines instead of just painting
+    a circle around the cursor whenever you press the mouse button. And well it changes the size, color, etc.
+    in the _refresh_brush method..
+    
+    :param paletteColor: color of brush
+    :param opacity: opacity of brush
+    :param brushSize: size of brush
+    """
     def __init__(self, paletteColor, opacity, brushSize):
         # yapf: disable
         self.option_data = {
@@ -35,7 +45,10 @@ class ToolBrush:
             self._refresh_brush()
 
     def _refresh_brush(self):
-        padding = 8
+        """
+        refresh the brush to match the new values of its options
+        """
+        padding = 8  # I actually don't know what it does but, padding i guess..?
         self.image = pygame.Surface((self.option_data['brush_size'] + padding,
                                      self.option_data['brush_size'] + padding),
                                     flags=pygame.SRCALPHA,

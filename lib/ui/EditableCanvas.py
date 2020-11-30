@@ -9,6 +9,13 @@ from lib.tools.UndoRecord import UndoRecord
 
 
 class EditableCanvas(UIElement):
+    """
+    There is an object of this class (canvasUI) in CanvasWindow...
+    This class allows the canvas to be really while CanvasWindow is kinda just the container
+
+    There are just a lot of parameters god
+    """
+
     # again lots of paramters
     def __init__(self,
                  rect,
