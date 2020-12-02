@@ -87,7 +87,7 @@ class MenuBar(UIElement):
 
     # because we have to kill more stuff
     def kill(self):
-        self.menu_bar_container.kill()
+        self.menuBarContainer.kill()
         super().kill()
 
     def _open_top_menu(self, event):
